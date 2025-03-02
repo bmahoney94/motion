@@ -29,17 +29,17 @@ class Frame:
 
 			theta = theta + 120
 
-	def plot( self):
-		""" Creates scatterplot to show attachment points in local coordinate system. """
-		x = np.zeros( 6)
-		y = np.zeros( 6)		
-		z = np.zeros( 6)		
-		
-		for index, attachment_point in enumerate( self.attachment_points):
-			x[ index], y[ index], z[ index]= attachment_point
+def plot( frame):
+	""" Creates scatterplot to show attachment points in local coordinate system. """
+	x = np.zeros( 6)
+	y = np.zeros( 6)		
+	z = np.zeros( 6)		
+	
+	for index, attachment_point in enumerate( frame.attachment_points):
+		x[ index], y[ index], z[ index]= attachment_point
 
-		plt.scatter( x, y)
-		plt.show()
+	plt.scatter( x, y)
+	plt.show()
 
 class Leg:
 	""" Holds the geometry of a leg, i.e. start and end points and length.
@@ -96,18 +96,18 @@ class StewartPlatform:
 			print( new_leg.get_length())
 
 	def plot( self):
-		self.base_frame.plot()
-		self.moving_frame.plot()
+		plot( self.base_frame)
+		plot( self.moving_frame)
 
 if __name__ == '__main__':
 
 	base_frame = Frame( 1.5, 90)
 	pprint( base_frame.__dict__)
-	base_frame.plot()
+	plot( base_frame)
 
 	moving_frame = Frame( 1.5, 30)
 	pprint( moving_frame.__dict__)
-	moving_frame.plot()	
+	plot( moving_frame)	
 
 
 	test_platform = StewartPlatform( base_frame, moving_frame )
